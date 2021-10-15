@@ -1,9 +1,9 @@
 <template>
-  <div class="card-container">
+  <div class="container mt-4">
     <div class="input-wrapper">
       <form @submit.prevent="getLocation">
-        <input ref="inputLocation" type="text" name="location" id="location" placeholder="City Name...">
-        <input type="submit" value="Search">
+        <input class="form-control" ref="inputLocation" type="text" name="location" id="location" placeholder="City Name...">
+        <input class="btn btn-primary" type="submit" value="Search">
       </form>
     </div>
     <div v-if="weathers">
@@ -15,7 +15,7 @@
 <script>
   import { ref } from 'vue';
   import WeatherBoxes from '../components/WeatherBoxes.vue';
-  import {getWeather} from '../composable/getWeather'
+  import { getWeather } from '../composable/getWeather'
   import { getGeo } from '../composable/getGeolocation';
 
   export default {
@@ -39,10 +39,5 @@
 </script>
 
 <style>
-  .card-container {
-    margin: 3rem auto;
-    width: 90%;
-    display: block;
-    position: relative;
-  }
+
 </style>
