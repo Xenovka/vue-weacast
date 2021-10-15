@@ -1,8 +1,15 @@
-const getWeather = async () => {
-  const APIKey = "3d1825841ff6894bee46fcdf49d532db";
-  const getData = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=${APIKey}`);
-  const result = await getData.json();
-  return result;
-};
+export const getWeather = async (lat, lon) => {
+  try {
+    const APIKey = "3d1825841ff6894bee46fcdf49d532db";
+    const getData = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${APIKey}`);
 
-export { getWeather };
+    if (!getData.ok) {
+      throw new Error("Something went wrong when trying to fetch weather data!");
+    }
+
+    const weatherData = await getData.json();
+    return weatherData;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
