@@ -1,25 +1,23 @@
 <template>
   <div class="weather-wrapper">
-    <h4 class="weather-day">{{ }}</h4>
+    <h4 class="weather-day">{{  }}</h4>
     <img :src="weatherIcon" alt="weather icon" class="weather-icon">
-    <h3 class="weather-status">{{ }}</h3>
-    <h4 class="temperature">{{ }}</h4>
+    <h3 class="weather-status">{{ weatherStatus }}</h3>
+    <h4 class="temperature">{{ temperature }}℃</h4>
   </div>
 </template>
 
 <script>
-import { inject, onMounted } from 'vue';
 
 export default {
-  setup() {
-    const weatherIcon = require('../assets/lighting.png');
-    const weatherData = inject('weathers')
+  props: ['fetchedData'],
+  setup(props) {
+    const weatherData = props.fetchedData
+    const weatherIcon = `http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`;
+    const weatherStatus = weatherData.current.weather[0].main
+    const temperature = (weatherData.current.temp - 273.15).toFixed(0)
 
-    onMounted(() => {
-      console.log(weatherData)
-    })
-
-    return {weatherIcon}
+    return {weatherIcon, weatherStatus, temperature}
   }
 }
 </script>
