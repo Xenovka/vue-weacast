@@ -14,9 +14,9 @@
 
 <script>
   import { ref } from 'vue';
-  import WeatherBoxes from '../components/WeatherBoxes.vue';
   import { getWeather } from '../composable/getWeather'
   import { getGeo } from '../composable/getGeolocation';
+  import WeatherBoxes from '../components/WeatherBoxes.vue';
 
   export default {
   components: {

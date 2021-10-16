@@ -8,14 +8,30 @@
 </template>
 
 <script>
+import { onMounted, onUpdated, ref } from 'vue';
 
 export default {
   props: ['fetchedData'],
   setup(props) {
-    const weatherData = props.fetchedData
-    const weatherIcon = `http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`;
-    const weatherStatus = weatherData.current.weather[0].main
-    const temperature = (weatherData.current.temp - 273.15).toFixed(0)
+    const weatherData = ref(null)
+    const weatherIcon = ref(null)
+    const weatherStatus = ref(null)
+    const temperature = ref(null)
+
+    const mountData = () => {
+      weatherData.value = props.fetchedData
+      weatherIcon.value = `http://openweathermap.org/img/wn/${weatherData.value.current.weather[0].icon}@2x.png`;
+      weatherStatus.value = weatherData.value.current.weather[0].main
+      temperature.value = (weatherData.value.current.temp - 273.15).toFixed(0)
+    }
+
+    onMounted(() => { 
+      mountData()
+    })
+
+    onUpdated(() => {
+      mountData()
+    })
 
     return {weatherIcon, weatherStatus, temperature}
   }
