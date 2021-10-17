@@ -1,19 +1,32 @@
 <template>
-  <div class="weather-wrapper">
-    <h4 class="weather-day">{{  }}</h4>
-    <img alt="weather icon" class="weather-icon">
-    <h3 class="weather-status">{{  }}</h3>
-    <h4 class="temperature">{{  }}℃</h4>
+  <div class="weather-wrapper" v-for="weather in weathers" :key="weather.days">
+    <h4 class="weather-day">{{ weather.days }}</h4>
+    <img :src="weather.weatherIcon" alt="weather icon" class="weather-icon">
+    <h3 class="weather-status">{{ weather.weatherStatus }}</h3>
+    <h4 class="temperature">{{ weather.temperature }}℃</h4>
   </div>
 </template>
 
 <script>
-
+import { onMounted, onUpdated, ref } from 'vue'
 
 export default {
-  props: ['weathers'],
+  props: ['weathers', 'location'],
   setup(props) {
-    console.log(props.weathers)
+    const weathers = ref(null)
+
+    onMounted(() => {
+      weathers.value = props.weathers
+      console.log(props.location[0])
+    })
+
+    onUpdated(() => {
+      weathers.value = props.weathers
+      console.log(props.location[0])
+    })
+
+
+    return {weathers}
   }
 }
 </script>
