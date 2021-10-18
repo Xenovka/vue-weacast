@@ -1,8 +1,8 @@
 <template>
-  <div class="weather-wrapper" v-for="weather in weathers" :key="weather.days">
-    <h4 class="weather-day">{{ weather.days }}</h4>
-    <img :src="weather.weatherIcon" alt="weather icon" class="weather-icon">
-    <h3 class="weather-status">{{ weather.weatherStatus }}</h3>
+  <div class="weathers-wrapper" v-for="weather in weathers" :key="weather.days">
+    <h4 class="weathers-day">{{ weather.days }}</h4>
+    <img :src="weather.weatherIcon" alt="weather icon" class="weathers-icon">
+    <h3 class="weathers-status">{{ weather.weatherStatus }}</h3>
     <h4 class="temperature">{{ weather.temperature }}℃</h4>
   </div>
 </template>
@@ -17,12 +17,10 @@ export default {
 
     onMounted(() => {
       weathers.value = props.weathers
-      console.log(props.location[0])
     })
 
     onUpdated(() => {
       weathers.value = props.weathers
-      console.log(props.location[0])
     })
 
 
@@ -32,7 +30,7 @@ export default {
 </script>
 
 <style scoped>
-  .weather-wrapper {
+  .weathers-wrapper {
     background-color: #fff;
     opacity: .6;
     border-radius: 6px;
@@ -41,7 +39,7 @@ export default {
     height: 23rem;
   }
 
-  .weather-icon {
+  .weathers-icon {
     width: 5.4rem;
     height: 5.4rem;
   }

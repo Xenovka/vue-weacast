@@ -6,29 +6,36 @@
           <input class="form-control" ref="inputLocation" type="text" name="location" id="location" placeholder="City Name...">
           <input class="btn btn-primary" type="submit" value="Search">
         </form>
-        </div>
         <div v-if="weatherData">
-          <weather-boxes :weathers="weatherData" :location="location"></weather-boxes>
+          <main-weather :weather="weatherData" :location="location"></main-weather>
         </div>
+      </div>
+      <div v-if="weathersData">
+        <weather-boxes :weathers="weathersData"></weather-boxes>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-  import { onUpdated, ref  } from 'vue';
+  import { ref  } from 'vue';
   import Moment from 'moment'
   import {extendMoment} from 'moment-range'
   import { getWeather } from '../composable/getWeather'
   import { getGeo } from '../composable/getGeolocation';
+
   import WeatherBoxes from '../components/WeatherBoxes.vue';
+  import MainWeather from '../components/MainWeather.vue'
 
   export default {
   components: {
-      WeatherBoxes
+      WeatherBoxes,
+      MainWeather
     },
     setup() {
       const weathers = ref(null);
       const weatherData = ref(null)
+      const weathersData = ref(null)
       const inputLocation = ref(null);
       const location = ref(null)
       const curDay = ref(null)
@@ -55,18 +62,16 @@
         })
 
         dailyWeathers.length = 5;
-        weatherData.value = [
-          {
-            days: fiveDays.value[0],
-            weatherIcon: `http://openweathermap.org/img/wn/${weathers.value.current.weather[0].icon}@2x.png`,
-            weatherStatus: weathers.value.current.weather[0].main,
-            temperature: (weathers.value.current.temp - 273.15).toFixed(0)
-          },
-          ...dailyWeathers
-        ]
+        weatherData.value = {
+          days: fiveDays.value[0],
+          weatherIcon: `http://openweathermap.org/img/wn/${weathers.value.current.weather[0].icon}@2x.png`,
+          weatherStatus: weathers.value.current.weather[0].main,
+          temperature: (weathers.value.current.temp - 273.15).toFixed(0)
+        }
+        weathersData.value = [...dailyWeathers]
       }
 
-      return {getData, inputLocation, weatherData, location}
+      return {getData, inputLocation, weatherData, weathersData, location}
     }
   }
 </script>
