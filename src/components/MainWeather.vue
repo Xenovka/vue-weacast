@@ -1,5 +1,6 @@
 <template>
   <div class="weather-wrapper">
+    <h4 class="weather-location">{{ weatherLocation.name }}, {{ weatherLocation.country }}</h4>
     <h4 class="weather-day">{{ weather.days }}</h4>
     <img :src="weather.weatherIcon" alt="weather icon" class="weather-icon">
     <h3 class="weather-status">{{ weather.weatherStatus }}</h3>
@@ -10,23 +11,29 @@
 <script>
 import { onUpdated, ref } from 'vue'
 export default {
-  props: ['weather'],
+  props: ['weather', 'location'],
   setup(props) {
     const weather = ref(null)
+    const weatherLocation = ref(null)
 
     weather.value = props.weather
+    weatherLocation.value = props.location[0]
 
     onUpdated(() => {
       weather.value = props.weather
+      weatherLocation.value = props.location[0]
     })
 
-    console.log(weather.value)
-
-    return {weather}
+    return {weather, weatherLocation}
   }
 }
 </script>
 
 <style scoped>
-
+  .weather-day,
+  .weather-status,
+  .weather-location,
+  .temperature {
+    text-align: center;
+  }
 </style>

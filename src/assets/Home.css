@@ -1,0 +1,40 @@
+.weathers-container,
+.weather-container,
+.input-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.input-location,
+.btn-search {
+  border-radius: 4px;
+}
+
+.input-location {
+  padding: 0.6rem 2rem;
+  font-size: 1.8rem;
+  outline: none;
+  border: 2px solid #242424;
+  box-shadow: 2px 2px 1px 1px rgba(24, 24, 24, 0.4);
+  transform: translateY(4px);
+}
+
+.btn-search {
+  padding: 1rem 2rem;
+  margin-left: 2rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border: none;
+  background-color: #ddd;
+  box-shadow: 0px 8px 1px 1px rgba(24, 24, 24, 0.6);
+  transition: all 0.1s ease;
+}
+
+.btn-search:active {
+  box-shadow: 0px 4px 1px 1px rgba(24, 24, 24, 0.6);
+  transform: translateY(4px);
+}
+
+.weather-container {
+  margin: 3rem 0 !important;
+}

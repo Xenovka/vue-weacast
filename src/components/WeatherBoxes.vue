@@ -1,7 +1,9 @@
 <template>
   <div class="weathers-wrapper col-lg-2" v-for="weather in weathers" :key="weather.days">
     <h4 class="weathers-day">{{ weather.days }}</h4>
-    <img :src="weather.weatherIcon" alt="weather icon" class="weathers-icon">
+    <div class="image-wrapper">
+      <img :src="weather.weatherIcon" alt="weather icon" class="weathers-icon">
+    </div>
     <h3 class="weathers-status">{{ weather.weatherStatus }}</h3>
     <h4 class="temperature">{{ weather.temperature }}℃</h4>
   </div>
@@ -31,10 +33,9 @@ export default {
 
 <style scoped>
   .weathers-wrapper {
-    opacity: .6;
     border-radius: 6px;
-    box-shadow: 2px 2px 4px 2px rgba(24, 24, 24, .6);
-    height: 23rem;
+    box-shadow: 2px 3px 4px 2px rgba(24, 24, 24, .6);
+    height: 20rem;
   }
 
   .weathers-wrapper {
@@ -44,5 +45,16 @@ export default {
   .weathers-icon {
     width: 10rem;
     height: 10rem;
+  }
+
+  .weathers-day,
+  .weathers-status,
+  .temperature,
+  .image-wrapper {
+    text-align: center;
+  }
+
+  .weathers-day {
+    margin-top: 2rem;
   }
 </style>

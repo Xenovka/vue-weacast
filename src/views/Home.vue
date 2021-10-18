@@ -3,8 +3,8 @@
     <div class="row">
       <div class="input-wrapper col-lg-12">
         <form @submit.prevent="getData">
-          <input class="form-control" ref="inputLocation" type="text" name="location" id="location" placeholder="City Name...">
-          <input class="btn btn-primary" type="submit" value="Search">
+          <input class="input-location" ref="inputLocation" type="text" name="location" id="location" placeholder="City Name...">
+          <input class="btn-search" type="submit" value="Search">
         </form>
       </div>
       <div v-if="weatherData" class="weather-container">
@@ -45,6 +45,7 @@
 
       const getData = async () => {
         location.value = await getGeo(inputLocation.value.value)
+        inputLocation.value.value = "";
         const latitude = location.value[0].lat;
         const longitude = location.value[0].lon
         
@@ -63,7 +64,7 @@
 
         dailyWeathers.length = 5;
         weatherData.value = {
-          days: fiveDays.value[0],
+          days: "Today",
           weatherIcon: `http://openweathermap.org/img/wn/${weathers.value.current.weather[0].icon}@2x.png`,
           weatherStatus: weathers.value.current.weather[0].main,
           temperature: (weathers.value.current.temp - 273.15).toFixed(0)
@@ -77,10 +78,5 @@
 </script>
 
 <style>
-  .weathers-container,
-  .weather-container,
-  .input-wrapper {
-    display: flex;
-    justify-content: space-around;
-  }
+  @import url('../assets/Home.css');
 </style>
