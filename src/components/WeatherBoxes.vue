@@ -1,5 +1,5 @@
 <template>
-  <div class="weathers-wrapper" v-for="weather in weathers" :key="weather.days">
+  <div class="weathers-wrapper col-lg-2" v-for="weather in weathers" :key="weather.days">
     <h4 class="weathers-day">{{ weather.days }}</h4>
     <img :src="weather.weatherIcon" alt="weather icon" class="weathers-icon">
     <h3 class="weathers-status">{{ weather.weatherStatus }}</h3>
@@ -31,16 +31,18 @@ export default {
 
 <style scoped>
   .weathers-wrapper {
-    background-color: #fff;
     opacity: .6;
     border-radius: 6px;
-    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, .6);
-    width: 27rem;
+    box-shadow: 2px 2px 4px 2px rgba(24, 24, 24, .6);
     height: 23rem;
   }
 
+  .weathers-wrapper {
+    margin-right: 1rem;
+  }
+
   .weathers-icon {
-    width: 5.4rem;
-    height: 5.4rem;
+    width: 10rem;
+    height: 10rem;
   }
 </style>

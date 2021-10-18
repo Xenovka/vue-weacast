@@ -6,11 +6,11 @@
           <input class="form-control" ref="inputLocation" type="text" name="location" id="location" placeholder="City Name...">
           <input class="btn btn-primary" type="submit" value="Search">
         </form>
-        <div v-if="weatherData">
-          <main-weather :weather="weatherData" :location="location"></main-weather>
-        </div>
       </div>
-      <div v-if="weathersData">
+      <div v-if="weatherData" class="weather-container">
+        <main-weather :weather="weatherData" :location="location"></main-weather>
+      </div>
+      <div v-if="weathersData" class="row weathers-container">
         <weather-boxes :weathers="weathersData"></weather-boxes>
       </div>
     </div>
@@ -77,5 +77,10 @@
 </script>
 
 <style>
-
+  .weathers-container,
+  .weather-container,
+  .input-wrapper {
+    display: flex;
+    justify-content: space-around;
+  }
 </style>
